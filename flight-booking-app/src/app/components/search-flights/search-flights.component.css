@@ -1,0 +1,12 @@
+.search-card {
+  max-width: 720px;
+  margin: 24px auto;
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+}
+
+input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+button { margin-top: 8px; }
+ul { list-style: none; padding: 0; }
+li { padding: 8px 0; border-bottom: 1px solid #f0f0f0; }

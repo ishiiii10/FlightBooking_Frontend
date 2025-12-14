@@ -1,0 +1,26 @@
+<div class="search-card">
+  <h2>Search Flights</h2>
+  <form [formGroup]="form" (ngSubmit)="onSearch()" novalidate>
+    <label>From</label>
+    <input formControlName="from" />
+
+    <label>To</label>
+    <input formControlName="to" />
+
+    <label>Depart (YYYY-MM-DD)</label>
+    <input formControlName="depart" placeholder="2025-12-20" />
+
+    <button type="submit">Search</button>
+  </form>
+
+  <div class="results" *ngIf="results.length">
+    <h3>Results ({{ results.length }})</h3>
+    <ul>
+      <li *ngFor="let f of results">
+        <strong>{{ f.airline }}</strong> — {{ f.from }} → {{ f.to }} — {{ f.depart }} — ${{ f.price }}
+      </li>
+    </ul>
+  </div>
+
+  <p *ngIf="!results.length">No results yet; try searching.</p>
+</div>
