@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators, AbstractControl, ValidationErrors, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FlightService } from '../../services/flight.service';
 
@@ -18,20 +18,22 @@ function passwordMatchValidator(control: AbstractControl): ValidationErrors | nu
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  form = this.fb.group(
-    {
-      fullName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]]
-    },
-    { validators: passwordMatchValidator }
-  );
+  form!: FormGroup;
 
   submitted = false;
   message = '';
 
-  constructor(private fb: FormBuilder, private flightService: FlightService, private router: Router) {}
+  constructor(private fb: FormBuilder, private flightService: FlightService, private router: Router) {
+    this.form = this.fb.group(
+      {
+        fullName: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', [Validators.required]]
+      },
+      { validators: passwordMatchValidator }
+    );
+  }
 
   get f() {
     return this.form.controls;

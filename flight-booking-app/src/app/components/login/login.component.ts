@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FlightService } from '../../services/flight.service';
 
@@ -12,14 +12,16 @@ import { FlightService } from '../../services/flight.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  form = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
-  });
+  form!: FormGroup;
 
   message = '';
 
-  constructor(private fb: FormBuilder, private flightService: FlightService, private router: Router) {}
+  constructor(private fb: FormBuilder, private flightService: FlightService, private router: Router) {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
+  }
 
   get f() {
     return this.form.controls;
