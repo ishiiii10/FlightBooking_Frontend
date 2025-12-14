@@ -3,20 +3,20 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
     <label>Full Name</label>
     <input formControlName="fullName" />
-    <div class="error" *ngIf="submitted && f.fullName.errors?.['required']">Full name is required.</div>
+    <div class="error" *ngIf="submitted && f['fullName'].errors?.['required']">Full name is required.</div>
 
     <label>Email</label>
     <input formControlName="email" />
-    <div class="error" *ngIf="submitted && f.email.errors">
-      <div *ngIf="f.email.errors?.['required']">Email is required.</div>
-      <div *ngIf="f.email.errors?.['email']">Enter a valid email.</div>
+    <div class="error" *ngIf="submitted && f['email'].errors">
+      <div *ngIf="f['email'].errors?.['required']">Email is required.</div>
+      <div *ngIf="f['email'].errors?.['email']">Enter a valid email.</div>
     </div>
 
     <label>Password</label>
     <input type="password" formControlName="password" />
-    <div class="error" *ngIf="submitted && f.password.errors">
-      <div *ngIf="f.password.errors?.['required']">Password is required.</div>
-      <div *ngIf="f.password.errors?.['minlength']">Minimum length is 6.</div>
+    <div class="error" *ngIf="submitted && f['password'].errors">
+      <div *ngIf="f['password'].errors?.['required']">Password is required.</div>
+      <div *ngIf="f['password'].errors?.['minlength']">Minimum length is 6.</div>
     </div>
 
     <label>Confirm Password</label>

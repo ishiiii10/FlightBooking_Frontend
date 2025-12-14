@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { FlightService, Flight } from '../../services/flight.service';
 
 @Component({
@@ -11,15 +11,17 @@ import { FlightService, Flight } from '../../services/flight.service';
   styleUrls: ['./search-flights.component.css']
 })
 export class SearchFlightsComponent {
-  form = this.fb.group({
-    from: [''],
-    to: [''],
-    depart: ['']
-  });
+  form!: FormGroup;
 
   results: Flight[] = [];
 
-  constructor(private fb: FormBuilder, private flightService: FlightService) {}
+  constructor(private fb: FormBuilder, private flightService: FlightService) {
+    this.form = this.fb.group({
+      from: [''],
+      to: [''],
+      depart: ['']
+    });
+  }
 
   onSearch() {
     const { from, to, depart } = this.form.value as any;
