@@ -87,6 +87,11 @@ flight-booking-frontend/
 
   <img width="1428" height="916" alt="Screenshot 2025-12-15 at 11 35 30 PM" src="https://github.com/user-attachments/assets/abb8e319-d6eb-4daa-83f5-0bdf3e653306" />
 
+- **Only Present and Future Dates Available**
+- 
+  <img width="1469" height="928" alt="Screenshot 2025-12-16 at 12 13 23 AM" src="https://github.com/user-attachments/assets/5c03c537-d403-41b9-bff0-f61b093bccd1" />
+
+
 ---
 
 ## 🧭 Overview
