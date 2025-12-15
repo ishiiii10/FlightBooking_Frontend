@@ -1,18 +1,18 @@
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SearchFlightsComponent } from './flights/search-flights/search-flights.component';
 
-export const routes: Routes = [
-	{ path: '', redirectTo: 'search', pathMatch: 'full' },
-	{
-		path: 'register',
-		loadComponent: () => import('./components/register/register.component').then(m => m.RegisterComponent)
-	},
-	{
-		path: 'login',
-		loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
-	},
-	{
-		path: 'search',
-		loadComponent: () => import('./components/search-flights/search-flights.component').then(m => m.SearchFlightsComponent)
-	},
-	{ path: '**', redirectTo: 'search' }
+const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'search-flights', component: SearchFlightsComponent }
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
