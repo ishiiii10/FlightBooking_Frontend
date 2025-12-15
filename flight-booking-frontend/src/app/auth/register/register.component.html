@@ -3,17 +3,15 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
   <input formControlName="name" placeholder="Full Name" />
-
   <input formControlName="email" placeholder="Email" />
-
   <input type="password" formControlName="password" placeholder="Password" />
 
-  <button type="submit" [disabled]="loading || registerForm.invalid">
-    {{ loading ? 'Registering...' : 'Register' }}
+  <button type="submit" [disabled]="registerForm.invalid">
+    Register
   </button>
 
-  <p *ngIf="errorMessage" style="color: red;">
-    {{ errorMessage }}
+  <p *ngIf="successMessage" style="color: green;">
+    {{ successMessage }}
   </p>
 
 </form>
