@@ -1,8 +1,19 @@
 <h2>Register</h2>
 
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
   <input formControlName="name" placeholder="Full Name" />
+
   <input formControlName="email" placeholder="Email" />
+
   <input type="password" formControlName="password" placeholder="Password" />
-  <button type="submit">Register</button>
+
+  <button type="submit" [disabled]="loading || registerForm.invalid">
+    {{ loading ? 'Registering...' : 'Register' }}
+  </button>
+
+  <p *ngIf="errorMessage" style="color: red;">
+    {{ errorMessage }}
+  </p>
+
 </form>
