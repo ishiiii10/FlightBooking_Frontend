@@ -1,40 +1,43 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './login.component.html'
+  imports: [FormsModule, RouterModule],
+  templateUrl: './login.html',
+  styleUrls: ['./login.css']
 })
-export class LoginComponent {
+export class Login {
 
-  loginForm;
-  errorMessage = '';
+  username = '';
+  password = '';
 
   constructor(
-    private fb: FormBuilder,
+    private authService: AuthService,
     private router: Router
-  ) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+  ) {}
+
+  login() {
+    this.authService.login({
+      username: this.username,
+      password: this.password
+    }).subscribe({
+      next: (res: any) => {
+        // store JWT
+        localStorage.setItem('token', res.token);
+
+        alert('Login successful');
+
+        // redirect to flight search page
+        this.router.navigate(['/search']);
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Invalid credentials');
+      }
     });
-  }
-
-  onSubmit() {
-    if (this.loginForm.invalid) return;
-
-    const { email, password } = this.loginForm.value;
-
-    // MOCK CREDENTIALS
-    if (email === 'user@test.com' && password === 'password') {
-      localStorage.setItem('mockToken', 'logged-in');
-      this.router.navigate(['/search-flights']);
-    } else {
-      this.errorMessage = 'Invalid credentials (Mock)';
-    }
   }
 }

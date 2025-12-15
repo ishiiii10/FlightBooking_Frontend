@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,16 @@ import { RouterOutlet, RouterLink } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+
+  constructor(private router: Router) {}
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('mockToken');
+  }
+
+  logout() {
+    localStorage.removeItem('mockToken');
+    this.router.navigate(['/login']);
+  }
+}
