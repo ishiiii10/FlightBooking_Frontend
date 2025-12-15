@@ -1,6 +1,12 @@
-<h2>Available Flights</h2>
+<h2>Search Flights</h2>
 
-<table border="1" cellpadding="10">
+<form [formGroup]="searchForm" (ngSubmit)="searchFlights()">
+  <input formControlName="source" placeholder="Source (DEL)" />
+  <input formControlName="destination" placeholder="Destination (BOM)" />
+  <button type="submit">Search</button>
+</form>
+
+<table *ngIf="flights.length" border="1" cellpadding="10">
   <tr>
     <th>Flight</th>
     <th>From</th>
