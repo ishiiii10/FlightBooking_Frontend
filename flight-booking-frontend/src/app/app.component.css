@@ -10,17 +10,39 @@
   padding: 40px 0;
 }
 
-/* Navbar styling */
+/* Navbar styling – light flight theme */
 .flight-navbar {
-  background: radial-gradient(circle at 0 0, #1f6feb 0, #05172a 45%, #020817 100%);
-  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 10px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .flight-navbar .navbar-brand {
   font-weight: 800;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  color: #1d4ed8;
 }
 
 .flight-navbar .nav-link {
@@ -29,9 +51,10 @@
   text-transform: uppercase;
   font-size: 0.85rem;
   padding-inline: 1rem;
+  color: #1e293b;
 }
 
 .flight-navbar .nav-link.active,
 .flight-navbar .nav-link:hover {
-  color: #61dafb !important;
+  color: #1d4ed8 !important;
 }
