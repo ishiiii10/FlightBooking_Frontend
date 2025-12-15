@@ -18,6 +18,27 @@ body {
     linear-gradient(135deg, #020617 0%, #020617 40%, #0b1120 100%);
 }
 
+/* Subtle grid overlay to make background feel techy/trendy */
+.app-main {
+  position: relative;
+  overflow: hidden;
+}
+
+.app-main::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  background-size: 42px 42px;
+  background-position: -1px -1px;
+  opacity: 0.4;
+  mix-blend-mode: soft-light;
+  z-index: -1;
+}
+
 /* Make Bootstrap cards float nicely on dark background */
 .card {
   border-radius: 16px;
