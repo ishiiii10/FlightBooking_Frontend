@@ -1,23 +1,68 @@
-<h2>Search Flights</h2>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
 
-<form [formGroup]="searchForm" (ngSubmit)="searchFlights()">
-  <input formControlName="source" placeholder="Source (DEL)" />
-  <input formControlName="destination" placeholder="Destination (BOM)" />
-  <button type="submit">Search</button>
-</form>
+      <div class="card p-4">
+        <h3 class="text-center mb-4">Flight Search</h3>
 
-<table *ngIf="flights.length" border="1" cellpadding="10">
-  <tr>
-    <th>Flight</th>
-    <th>From</th>
-    <th>To</th>
-    <th>Price</th>
-  </tr>
+        <!-- Search Row -->
+        <div class="row g-3 align-items-end mb-4">
+          <div class="col-md-5">
+            <label class="form-label">Source</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter source"
+              [(ngModel)]="source"
+            />
+          </div>
 
-  <tr *ngFor="let flight of flights">
-    <td>{{ flight.flightNumber }}</td>
-    <td>{{ flight.source }}</td>
-    <td>{{ flight.destination }}</td>
-    <td>{{ flight.price }}</td>
-  </tr>
-</table>
+          <div class="col-md-5">
+            <label class="form-label">Destination</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter destination"
+              [(ngModel)]="destination"
+            />
+          </div>
+
+          <div class="col-md-2 d-grid">
+            <button class="btn btn-primary" (click)="searchFlights()">
+              Search
+            </button>
+          </div>
+        </div>
+
+        <!-- Flights Table -->
+        <div *ngIf="flights.length > 0">
+          <table class="table table-bordered table-hover text-center">
+            <thead class="table-dark">
+              <tr>
+                <th>Flight No</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Price (₹)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let flight of flights">
+                <td>{{ flight.flightNumber }}</td>
+                <td>{{ flight.source }}</td>
+                <td>{{ flight.destination }}</td>
+                <td>{{ flight.price }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- No Flights -->
+        <div *ngIf="flights.length === 0" class="text-center text-muted mt-3">
+          No flights found
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
