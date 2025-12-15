@@ -45,6 +45,11 @@ flight-booking-frontend/
 
 ---
 
+## 🔄 System Flow – Vertical Architecture Diagram
+<img width="1280" height="543" alt="image" src="https://github.com/user-attachments/assets/ae683251-fa9b-48f6-9937-2f07f2cc1fac" />
+
+--- 
+
 ## ✨ Screenshots
 
 > Frontend Integrated with Bcakend
@@ -78,7 +83,7 @@ flight-booking-frontend/
 
   <img width="1432" height="939" alt="Screenshot 2025-12-15 at 11 35 12 PM" src="https://github.com/user-attachments/assets/ed1a5e21-a024-4168-b258-614d7f2291df" />
 
--**Available Flights**
+- **Available Flights**
 
   <img width="1428" height="916" alt="Screenshot 2025-12-15 at 11 35 30 PM" src="https://github.com/user-attachments/assets/abb8e319-d6eb-4daa-83f5-0bdf3e653306" />
 
@@ -109,13 +114,28 @@ NimbusAir is a simple but polished frontend for a flight booking app:
 
 ### 1. Install dependencies
 
-npm install### 2. Run the dev server
-
+npm install 
+Run the dev server
 npm start
+
 # or
 ng serveNavigate to `http://localhost:4200/`.
 
 ---
+
+## 🧪 NPM Scripts
+
+Typical Angular scripts (adjust as needed):
+```
+{
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint"
+  }
+}
+```
 
 ## 🧩 Features
 
@@ -165,94 +185,6 @@ ng serveNavigate to `http://localhost:4200/`.
 ---
 
 
+---
 
-## 🔄 System Flow – Vertical Architecture Diagram
 
-Same logical flow as your original diagram, but redesigned as a vertical top‑to‑bottom chart.
-maid
-flowchart TB
-    %% Layers (top to bottom)
-    U[User<br/>Browser]
-
-    FE[Angular Frontend<br/>NimbusAir UI]
-
-    GW[API Gateway<br/>JWT Validation]
-
-    subgraph Core_Services[Core Services]
-      direction TB
-      AUTH[Auth Service<br/>Login / Register]
-      FLIGHT[Flight Service<br/>Search Flights]
-      BOOK[Booking Service<br/>Reserve Seats]
-      NOTIF[Notification Service<br/>Email / Alerts]
-    end
-
-    subgraph Databases
-      direction TB
-      AUTHDB[(Auth DB)]
-      FLIGHTDB[(Flight DB)]
-      BOOKDB[(Booking DB)]
-    end
-
-    %% Requests
-    U -->|HTTP Requests| FE
-    FE -->|REST API| GW
-
-    GW -->|/auth/*| AUTH
-    GW -->|/flights/*| FLIGHT
-    GW -->|/bookings/*| BOOK
-
-    %% Data persistence
-    AUTH --> AUTHDB
-    FLIGHT --> FLIGHTDB
-    BOOK --> BOOKDB
-
-    %% Notifications
-    BOOK --> NOTIF
-
-    %% Responses
-    AUTH -->|JWT Token| GW
-    GW -->|Response JSON| FE
-    FE -->|UI Render / Updates| U---
-
-## 🧱 Project Structure Flowchart (Left‑to‑Right)
-
-This diagram shows how the main frontend pieces fit together.
-maid
-flowchart LR
-    U[User<br/>Browser] --> APP[Angular App<br/>main.ts / AppComponent]
-
-    APP --> ROUTES[Routing<br/>app.routes.ts]
-    ROUTES --> LOGIN[Login Component]
-    ROUTES --> REGISTER[Register Component]
-    ROUTES --> SEARCH[FlightSearch Component]
-
-    LOGIN --> AUTH_SVC[AuthService<br/>/auth/login]
-    REGISTER --> AUTH_SVC
-    SEARCH --> API[Backend APIs<br/>/flights/*]
-
-    AUTH_SVC --> API
-
-    API --> DB[(Backend Databases)]
-
-    SEARCH --> UI[Flights Table<br/>Mock data / responses]
-    UI --> U---
-
-## 🧪 NPM Scripts
-
-Typical Angular scripts (adjust as needed):
-c
-{
-  "scripts": {
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint"
-  }
-}---
-
-## ✅ Notes
-
-- Frontend validation (date, name, etc.) is handled **only in the UI**;  
-  the backend payloads are kept minimal to avoid breaking existing APIs.
-- JWT storage is done via `localStorage` – adjust to your security requirements if needed.
-- Screenshots and diagrams in this README are illustrative; update paths and text as your project evolves.
