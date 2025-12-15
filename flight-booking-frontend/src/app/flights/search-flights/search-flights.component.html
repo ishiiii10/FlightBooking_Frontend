@@ -1,1 +1,17 @@
-<p>search-flights works!</p>
+<h2>Available Flights</h2>
+
+<table border="1" cellpadding="10">
+  <tr>
+    <th>Flight</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Price</th>
+  </tr>
+
+  <tr *ngFor="let flight of flights">
+    <td>{{ flight.flightNumber }}</td>
+    <td>{{ flight.source }}</td>
+    <td>{{ flight.destination }}</td>
+    <td>{{ flight.price }}</td>
+  </tr>
+</table>
