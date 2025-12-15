@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,12 +12,10 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
 
   registerForm;
-  loading = false;
-  errorMessage = '';
+  successMessage = '';
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
     private router: Router
   ) {
     this.registerForm = this.fb.group({
@@ -31,19 +28,12 @@ export class RegisterComponent {
   onSubmit() {
     if (this.registerForm.invalid) return;
 
-    this.loading = true;
-    this.errorMessage = '';
+    console.log('Mock Register Data:', this.registerForm.value);
 
-    this.authService.register(this.registerForm.value).subscribe({
-      next: () => {
-        this.loading = false;
-        alert('Registration successful');
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        this.loading = false;
-        this.errorMessage = err.error?.message || 'Registration failed';
-      }
-    });
+    this.successMessage = 'Registration successful (Mock)';
+
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 1000);
   }
 }
