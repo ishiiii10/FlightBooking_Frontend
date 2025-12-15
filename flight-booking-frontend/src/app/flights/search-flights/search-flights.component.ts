@@ -1,36 +1,33 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-search-flights',
+  selector: 'app-flight-search',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './search-flights.component.html'
+  imports: [FormsModule, CommonModule],
+  templateUrl: './search-flights.component.html',
+  styleUrls: ['./search-flights.component.css']
 })
-export class SearchFlightsComponent {
+export class FlightSearch {
 
-  searchForm;
-  flights: any[] = [];
+  source = '';
+  destination = '';
+
+  // 🔹 STATIC FLIGHT LIST (MOCK DATA)
   allFlights = [
-    { flightNumber: 'AI101', source: 'DEL', destination: 'BOM', price: 5000 },
-    { flightNumber: 'AI202', source: 'BLR', destination: 'DEL', price: 4500 },
-    { flightNumber: 'AI303', source: 'DEL', destination: 'BLR', price: 4800 }
+    { flightNumber: 'AI101', source: 'VJA', destination: 'BLR', price: 4500 },
+    { flightNumber: 'IND202', source: 'VJA', destination: 'HYD', price: 3800 },
+    { flightNumber: 'VJA303', source: 'BLR', destination: 'DEL', price: 6200 },
+    { flightNumber: 'GO404', source: 'VJA', destination: 'BLR', price: 4800 }
   ];
 
-  constructor(private fb: FormBuilder) {
-    this.searchForm = this.fb.group({
-      source: [''],
-      destination: ['']
-    });
-  }
+  flights: any[] = [];
 
   searchFlights() {
-    const { source, destination } = this.searchForm.value;
-
     this.flights = this.allFlights.filter(f =>
-      (!source || f.source === source) &&
-      (!destination || f.destination === destination)
+      f.source.toLowerCase() === this.source.toLowerCase() &&
+      f.destination.toLowerCase() === this.destination.toLowerCase()
     );
   }
 }
